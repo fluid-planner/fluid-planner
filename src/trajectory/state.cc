@@ -1,5 +1,7 @@
 #include <trajectory/state.h>
 
+namespace trajectory {
+
 template <class T>
 State<T>::State(const State<T>::Vec3t &pos, const State<T>::Vec3t &vel,
                 const T yaw)
@@ -22,3 +24,5 @@ template <class T> void State<T>::print() const {
   printf("Velocity: [ %.2f, %.2f, %.2f ]\n", vel_(0), vel_(1), vel_(2));
   printf("Yaw : %.2f\n", yaw_);
 }
+
+} // namespace trajectory

@@ -16,7 +16,8 @@ public:
   typedef Eigen::Matrix<T, 3, 1> Vec3t;
 
   // Constructor parameters:
-  //  pos: a 3x1 vector that contains [x, y, z]. In 2D, z can also be interpreted
+  //  pos: a 3x1 vector that contains [x, y, z]. In 2D, z can also be
+  //  interpreted
   //       to be the heading (depending on how you decide to use this field).
   //  vel: a 3x1 vector that contains [v_x, v_y, v_z]. In 2D, v_z is zero.
   //  yaw: a single T that contains the yaw. For 2D, this is the heading.
@@ -26,15 +27,17 @@ public:
   // Accessors to the private members.
   Vec3t Pos() const;
   Vec3t Vel() const;
+  T Pos(size_t i) const;
+  T Vel(size_t i) const;
   T Yaw() const;
 
   // Print pos, vel and yaw information to terminal.
   void print() const;
 
 private:
-  Vec3t pos_;                   // Position.
-  Vec3t vel_;                   // Velocity.
-  T yaw_;                       // Yaw or heading, if in 2D.
+  Vec3t pos_; // Position.
+  Vec3t vel_; // Velocity.
+  T yaw_;     // Yaw or heading, if in 2D.
 };
 
 // Declare the explicit instantiations; i.e., the allowed implementations of the

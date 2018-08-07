@@ -17,6 +17,16 @@ template <class T> typename State<T>::Vec3t State<T>::Vel() const {
   return vel_;
 }
 
+template <class T> T State<T>::Pos(size_t i) const {
+  assert(i < 3);
+  return pos_(i);
+}
+
+template <class T> T State<T>::Vel(size_t i) const {
+  assert(i < 3);
+  return vel_(i);
+}
+
 template <class T> T State<T>::Yaw() const { return yaw_; }
 
 template <class T> void State<T>::print() const {

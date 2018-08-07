@@ -54,18 +54,17 @@ public:
   void GetWaypointsLocal(const float dt, MatXt *pos, MatXt *vel);
 
 private:
+  int num_seg_;   // Number of segments, m.
+  int num_param_; // Number of parameters, which should be 2m.
 
-  int num_seg_;                     // Number of segments, m.
-  int num_param_;                   // Number of parameters, which should be 2m.
+  VecXt vels_;         // Linear velocity parameters.
+  VecXt omegas_;       // Angular velocity parameters.
+  float seg_duration_; // Duration of each segment.
 
-  VecXt vels_;                      // Linear velocity parameters.
-  VecXt omegas_;                    // Angular velocity parameters.
-  float seg_duration_;              // Duration of each segment.
-
-  bool is_transform_init_ = false;  // A flag indicating if R_wb_ and T_wb_ are
-                                    // initialized.
-  Eigen::Transform<T, 3, 3> R_wb_;  // Rotation from local to world frame.
-  Vec3t T_wb_;                      // Translation from local to world frame.
+  bool is_transform_init_ = false; // A flag indicating if R_wb_ and T_wb_ are
+                                   // initialized.
+  Eigen::Transform<T, 3, 3> R_wb_; // Rotation from local to world frame.
+  Vec3t T_wb_;                     // Translation from local to world frame.
 
   // Dubins model parameters:
   //  v:        linear velocity.
@@ -79,7 +78,8 @@ private:
 
 // Declare the explicit instantiations; i.e., the allowed implementations of the
 // Trajectory class. You will only be able to use Trajectory with float or
-// double, but time in all of these instantiations will be represented by a float.
+// double, but time in all of these instantiations will be represented by a
+// float.
 template class Trajectory<float>;
 template class Trajectory<double>;
 

@@ -1,7 +1,5 @@
 #include <cost_function/flow_field.h>
-#include <utils/print_utils.h>
 
-namespace pu = print_utils;
 namespace tr = trajectory;
 
 namespace cost_function {
@@ -50,7 +48,6 @@ void FlowField::AddSegment(const std::vector<tr::State<float>> &seg) {
   training_examples_.insert(training_examples_.end(), seg.begin(), seg.end());
 
   // Check that we have the correct number of training sets.
-  std::cout << "Num Examples " << num_examples_.size() << std::endl;
   assert(num_examples_.size() <= window_size_);
   return;
 }

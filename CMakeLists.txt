@@ -26,7 +26,7 @@ add_library(${PROJECT_NAME} SHARED
             src/cost_function/flow_field.cc
             )
 
-add_executable(fluid test/main.cc)
+add_executable(fluid src/main.cc)
 
 target_Link_libraries(fluid ${PROJECT_NAME}
                       trajectory

@@ -115,17 +115,20 @@ void Trajectory<T>::GetWaypointsWorld(const float dt, MatXt *pos, MatXt *vel) {
 
 template <class T>
 void Trajectory<T>::GetWaypointsLocal(const float dt, MatXt *pos, MatXt *vel) {
-  int num_pts = num_seg_ * std::ceil(seg_duration_ / dt);
+  size_t num_pts_per_seg = std::ceil(seg_duration_ / dt);
+  int num_pts = num_seg_ * num_pts_per_seg;
   pos->resize(3, num_pts);
   vel->resize(3, num_pts);
-
   Trajectory<T>::Vec3t pos_prev = Trajectory<T>::Vec3t::Zero();
   int j = 0;
+  float t = 0;
+
   for (int i = 0; i < num_seg_; i++) {
     T v = vels_(i);
     T omega = omegas_(i);
 
-    for (float t = 0.0; t < seg_duration_; t += dt) {
+    for (int k = 0; k < num_pts_per_seg; k++) {
+      t = k * dt;
       pos->col(j) = Trajectory<T>::Dubins(v, omega, t, pos_prev);
       vel->col(j) =
           Eigen::AngleAxis<T>((*pos)(2, j), Trajectory<T>::Vec3t(0, 0, 1)) *
@@ -148,8 +151,7 @@ Trajectory<T>::Dubins(const T v, const T omega, const float t,
   } else {
     x = Trajectory<T>::Vec3t(v / omega * (sin(theta + t * omega) - sin(theta)),
                              v / omega * (-cos(theta + t * omega) + cos(theta)),
-                             t * omega) +
-        pos_prev;
+                             t * omega) + pos_prev;
   }
   return x;
 }

@@ -1,5 +1,7 @@
 ## FLUID Planner: Directional Intent Flow Field Guided Trajectory Generation
 Author: Xuning Yang <xuning.yang@tri.global>
+Released under the MIT License.
+Copyright 2018 Toyota Research Institute.  All rights reserved.
 
 This package includes the FLUID Wrapper.
 

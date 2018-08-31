@@ -1,3 +1,23 @@
+// Copyright 2018 Toyota Research Institute.  All rights reserved.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 #include <fluid_planner.h>
 
 #include <chrono>
@@ -139,7 +159,7 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
 
     auto t2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<float> dur = (t2 - t1);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
 
     // Set transforms for the trajectories.
     printf("Set Tsfms");
@@ -154,7 +174,7 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
     auto t3 = std::chrono::high_resolution_clock::now();
 
     dur = (t3 - t2);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
 
     // Compute objective for all trajectories.
     printf("Compute cost");
@@ -163,7 +183,7 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
     auto t4 = std::chrono::high_resolution_clock::now();
 
     dur = (t4 - t3);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
     std::cout << std::flush;
 
     // Obtain trajectories that are below the rho-quantile cost.
@@ -176,7 +196,7 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
 
     auto t5 = std::chrono::high_resolution_clock::now();
     dur = (t5 - t4);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
     std::cout << std::flush;
 
     printf("Elite set");
@@ -202,7 +222,7 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
     auto t6 = std::chrono::high_resolution_clock::now();
 
     dur = (t6 - t5);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
     std::cout << std::flush;
 
     // Update Rho quantile cost.
@@ -229,7 +249,7 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
     std::cout << "rho_quantile_cost " << rho_quantile_cost << std::endl;
     auto t7 = std::chrono::high_resolution_clock::now();
     dur = (t7 - t6);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
 
     // Update GMMs.
     printf("Update GMMs");
@@ -239,15 +259,17 @@ FluidPlanner::Plan(const tr::State<float> &start, cf::CostFunction &cost_fcn) {
     // Output timing information.
     auto t8 = std::chrono::high_resolution_clock::now();
     dur = (t8 - t7);
-    printf("(%.4fs)\t", dur.count());
+    printf("(%.4fs)	", dur.count());
     dur = (t8 - t1);
-    printf("TOTAL(%.4fs)\n", dur.count());
+    printf("TOTAL(%.4fs)
+", dur.count());
   }
 
   traj_ = elite_traj;
   auto tf = std::chrono::high_resolution_clock::now();
   std::chrono::duration<float> dur = (tf - t0);
-  printf("Planner finished, took %.4fs. Exiting.\n", dur.count());
+  printf("Planner finished, took %.4fs. Exiting.
+", dur.count());
   return traj_;
 }
 

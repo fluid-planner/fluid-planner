@@ -1,6 +1,6 @@
 [submodule "modules/libgp_interface"]
 	path = modules/libgp_interface
-	url = git@<insert new url>/libgp_interface.git
+	url = git@github.com:fluid-planner/libgp_interface.git
 [submodule "modules/libgp"]
 	path = modules/libgp
-	url = https://github.com/xuningy/libgp
+	url = git@github.com:xuningy/libgp.git
